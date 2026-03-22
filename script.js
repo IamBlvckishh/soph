@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Fade-in on Scroll Effect
+    // Add active class to cover on load
+    setTimeout(() => {
+        document.querySelector('.magazine-cover').classList.add('active');
+    }, 100);
+
+    // Fade-in on Scroll
     const pages = document.querySelectorAll('.page');
-    
-    const observerOptions = {
-        threshold: 0.15
-    };
+    const observerOptions = { threshold: 0.15 };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -15,13 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    pages.forEach(page => {
-        observer.observe(page);
-    });
+    pages.forEach(page => observer.observe(page));
 
-    // 2. Smooth Progress Bar
+    // Progress Bar
     window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progress-bar").style.width = scrolled + "%";
