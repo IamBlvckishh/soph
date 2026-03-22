@@ -1,0 +1,154 @@
+:root {
+    --forest-green: #2d4c3e;
+    --sage-bg: #f8f9f8;
+    --paper-white: #fdfdfb;
+    --text-main: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: var(--paper-white);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Progress Indicator */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--forest-green);
+    width: 0%;
+    z-index: 100;
+}
+
+/* Cover Style */
+.magazine-cover {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--sage-bg);
+    text-align: center;
+}
+
+.issue-tag {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: var(--forest-green);
+    margin-bottom: 10px;
+}
+
+.magazine-cover h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+}
+
+/* Page Reveals */
+.page {
+    min-height: 100vh;
+    padding: 10vh 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Letter Section */
+.letter-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.letter-container span {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+}
+
+.letter-container p {
+    font-size: 1.4rem;
+    margin: 40px 0;
+    font-style: italic;
+}
+
+/* Image Layouts */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(10%);
+    transition: filter 0.6s ease;
+}
+
+img:hover { filter: grayscale(0%); }
+
+.photo-label {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--forest-green);
+    color: white;
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+}
+
+.split {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+}
+
+.text-block {
+    flex: 1;
+    border-left: 2px solid var(--forest-green);
+    padding-left: 30px;
+}
+
+.text-block h2 {
+    font-size: 2.5rem;
+    color: var(--forest-green);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.image-block { flex: 1.5; }
+
+.portrait-focus {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bottom-caption {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--forest-green);
+    text-align: center;
+}
