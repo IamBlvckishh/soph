@@ -1,30 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // SHIELD: Disable right-click and dragging
+    const container = document.querySelector('.scroll-container');
+    const pages = document.querySelectorAll('.page');
+    const progressBar = document.getElementById('progress-bar');
+    
+    let currentIndex = 0;
+
+    function goToPage(index) {
+        if (index < 0 || index >= pages.length) return;
+        currentIndex = index;
+        pages[currentIndex].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Keyboard controls
+    window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' || e.code === 'ArrowDown') {
+            e.preventDefault();
+            goToPage(currentIndex + 1);
+        }
+        if (e.code === 'ArrowUp') {
+            e.preventDefault();
+            goToPage(currentIndex - 1);
+        }
+    });
+
+    // Nav Buttons
+    document.getElementById('nextBtn').onclick = () => goToPage(currentIndex + 1);
+    document.getElementById('prevBtn').onclick = () => goToPage(currentIndex - 1);
+
+    // Progress Bar & Index Sync
+    container.addEventListener('scroll', () => {
+        const scrolled = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+        progressBar.style.width = scrolled + '%';
+        currentIndex = Math.round(container.scrollTop / window.innerHeight);
+    });
+
+    // Shield
     document.addEventListener('contextmenu', e => e.preventDefault());
-    document.querySelectorAll('img').forEach(img => {
-        img.onmousedown = (e) => e.preventDefault();
-    });
-
-    // Reveal cover
-    setTimeout(() => {
-        document.body.classList.add('active');
-        document.querySelector('.magazine-cover').classList.add('active');
-    }, 200);
-
-    // Intersection Observer for scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.page').forEach(page => observer.observe(page));
-
-    // Progress Bar
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById("progress-bar").style.width = scrolled + "%";
-    });
 });
