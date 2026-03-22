@@ -22,99 +22,118 @@ body {
     width: 0%; z-index: 100;
 }
 
-/* Cover with Image Styling */
+/* -- Updated Polaroid Cover Styling -- */
+
 .magazine-cover {
-    position: relative;
-    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
     overflow: hidden;
-    background-color: #000;
+    color: white;
 }
 
-.cover-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(70%) grayscale(20%);
-    z-index: 1;
-    transform: scale(1.05);
-    transition: transform 3s ease-out;
+/* 1. Split Screen - Left Side: The Image Frame */
+.polaroid-wrapper {
+    flex: 1.2;
+    background-color: var(--forest-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    position: relative;
+    box-shadow: 20px 0px 50px rgba(0,0,0,0.1);
 }
 
-.magazine-cover.active .cover-image {
-    transform: scale(1);
+.polaroid-frame {
+    background: white;
+    padding: 15px 15px 50px 15px; /* Thicker padding on the bottom */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    max-height: 85vh; /* Prevents overflow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotate(-3deg) translateY(10px); /* Romantic tilt */
+    transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+    opacity: 0;
 }
 
-.cover-overlay {
+.magazine-cover.active .polaroid-frame {
+    transform: rotate(-1deg) translateY(0px); /* Becomes visible and moves slightly */
+    opacity: 1;
+}
+
+.polaroid-frame img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Shows the whole picture! */
+    filter: sepia(10%); /* Soft vintage blend */
+}
+
+.polaroid-caption {
+    font-family: 'Mrs Saint Delafield', cursive;
+    color: var(--text-main);
+    font-size: 2rem;
+    margin-top: 15px;
+    letter-spacing: normal;
+}
+
+/* 2. Split Screen - Right Side: The Cover Text */
+.cover-text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--sage-bg);
+    color: var(--text-main);
+    padding: 10vw;
     position: relative;
     z-index: 2;
-    text-align: center;
-    color: white;
-    padding: 20px;
 }
 
-.issue-tag {
-    font-size: 0.7rem;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    opacity: 0.9;
+.magazine-cover.polaroid-style .issue-tag {
+    color: var(--forest-green);
+    margin-bottom: 5px;
 }
 
-.magazine-cover h1 {
-    font-size: clamp(3.5rem, 12vw, 7rem);
-    font-weight: 400;
-    letter-spacing: 15px;
-    text-transform: uppercase;
+.magazine-cover.polaroid-style h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    color: var(--forest-green);
+    border-top: 2px solid var(--forest-green);
+    border-bottom: 2px solid var(--forest-green);
+    padding: 15px 0;
+}
+
+.magazine-cover.polaroid-style .subtitle {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 1.1rem;
+    opacity: 0.8;
 }
 
 .scroll-prompt {
-    margin-top: 30px;
+    margin-top: 50px;
     font-size: 0.8rem;
     letter-spacing: 2px;
+    color: var(--forest-green);
     opacity: 0.6;
     animation: fadePulse 2s infinite;
 }
 
-@keyframes fadePulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-}
+@keyframes fadePulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
 
-/* Page Reveals */
+/* -- Rest of the Magazine styling (No change) -- */
 .page {
-    min-height: 100vh;
-    padding: 10vh 8vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(40px);
+    min-height: 100vh; padding: 10vh 8vw;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; transform: translateY(40px);
     transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
 }
-
 .page.active { opacity: 1; transform: translateY(0); }
-
-/* Letter Section */
 .letter-section { max-width: 800px; margin: 0 auto; text-align: center; }
-.letter-container span {
-    display: block; font-size: 0.8rem; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--forest-green);
-}
+.letter-container span { display: block; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--forest-green); }
 .letter-container p { font-size: 1.4rem; margin: 40px 0; font-style: italic; }
-
-/* Image Layouts */
 .image-wrapper { position: relative; width: 100%; }
 img { width: 100%; height: auto; display: block; }
-
-.photo-label {
-    position: absolute; top: 20px; right: 20px;
-    background: var(--forest-green); color: white;
-    padding: 10px 20px; font-size: 0.7rem; letter-spacing: 2px;
-}
-
+.photo-label { position: absolute; top: 20px; right: 20px; background: var(--forest-green); color: white; padding: 10px 20px; font-size: 0.7rem; letter-spacing: 2px; }
 .split { flex-direction: row; align-items: center; gap: 60px; }
 .text-block { flex: 1; border-left: 2px solid var(--forest-green); padding-left: 30px; }
 .text-block h2 { font-size: 2.5rem; color: var(--forest-green); margin-bottom: 20px; font-weight: 400; }
@@ -122,8 +141,12 @@ img { width: 100%; height: auto; display: block; }
 .portrait-focus { max-width: 500px; margin: 0 auto; text-align: center; }
 .bottom-caption { margin-top: 20px; font-size: 0.85rem; color: var(--forest-green); }
 
-/* Responsive for Mobile */
-@media (max-width: 768px) {
+/* Mobile Adjustments for Polaroid */
+@media (max-width: 900px) {
+    .magazine-cover { flex-direction: column; }
+    .polaroid-wrapper { flex: 1.5; padding: 30px; }
+    .polaroid-frame { max-height: 60vh; }
+    .cover-text-content { flex: 1; padding: 15px; align-items: center; text-align: center; }
+    .magazine-cover.polaroid-style h1 { font-size: 3rem; letter-spacing: 5px; }
     .split { flex-direction: column; }
-    .magazine-cover h1 { font-size: 3rem; letter-spacing: 5px; }
 }
