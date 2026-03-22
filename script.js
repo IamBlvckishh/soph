@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.scroll-container');
     const pages = document.querySelectorAll('.page');
     const progressBar = document.getElementById('progress-bar');
-    
     let currentIndex = 0;
+
+    // SHIELD: Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
 
     function goToPage(index) {
         if (index < 0 || index >= pages.length) return;
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pages[currentIndex].scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Keyboard controls
+    // Space Bar & Arrows
     window.addEventListener('keydown', (e) => {
         if (e.code === 'Space' || e.code === 'ArrowDown') {
             e.preventDefault();
@@ -27,13 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nextBtn').onclick = () => goToPage(currentIndex + 1);
     document.getElementById('prevBtn').onclick = () => goToPage(currentIndex - 1);
 
-    // Progress Bar & Index Sync
+    // Sync progress and Index on scroll
     container.addEventListener('scroll', () => {
         const scrolled = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
         progressBar.style.width = scrolled + '%';
         currentIndex = Math.round(container.scrollTop / window.innerHeight);
     });
-
-    // Shield
-    document.addEventListener('contextmenu', e => e.preventDefault());
 });
