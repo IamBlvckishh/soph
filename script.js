@@ -3,25 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const pages = document.querySelectorAll('.page');
     const cursor = document.getElementById('custom-cursor');
     const cursorText = document.querySelector('.cursor-text');
-    let currentIndex = 0;
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
 
-    // 1. CURSOR MOVEMENT & HOVER LOGIC
+    // CURSOR & PARALLAX
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
 
-        // Check for hidden message targets
-        const target = e.target.closest('.image-wrapper[data-caption]');
-        if (target) {
+        const hoverTarget = e.target.closest('.image-wrapper[data-caption]');
+        if (hoverTarget) {
             cursor.classList.add('active');
-            cursorText.textContent = target.getAttribute('data-caption');
+            cursorText.textContent = hoverTarget.getAttribute('data-caption');
         } else {
             cursor.classList.remove('active');
-            cursorText.textContent = '';
         }
 
-        // Parallax logic for active images
-        const activeImg = document.querySelector('.page.active img');
+        const activeImg = document.querySelector('.page.active img:not(.hero-img)');
         if (activeImg) {
             const x = (window.innerWidth / 2 - e.pageX) / 50;
             const y = (window.innerHeight / 2 - e.pageY) / 50;
@@ -29,26 +27,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. SCROLL NAVIGATION
-    function goToPage(index) {
-        if (index < 0 || index >= pages.length) return;
-        currentIndex = index;
-        pages[currentIndex].scrollIntoView({ behavior: 'smooth' });
+    // NAVIGATION FUNCTION
+    function scrollToIndex(index) {
+        if (index >= 0 && index < pages.length) {
+            pages[index].scrollIntoView({ behavior: 'smooth' });
+        }
     }
+
+    function getCurrentIndex() {
+        return Math.round(container.scrollTop / window.innerHeight);
+    }
+
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        scrollToIndex(getCurrentIndex() + 1);
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        scrollToIndex(getCurrentIndex() - 1);
+    });
 
     window.addEventListener('keydown', (e) => {
         if (e.code === 'Space' || e.code === 'ArrowDown') {
             e.preventDefault();
-            goToPage(currentIndex + 1);
+            scrollToIndex(getCurrentIndex() + 1);
+        }
+        if (e.code === 'ArrowUp') {
+            e.preventDefault();
+            scrollToIndex(getCurrentIndex() - 1);
         }
     });
 
-    // 3. OBSERVER FOR REVEAL
+    // REVEAL ANIMATIONS
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
+            if (entry.isIntersecting) {
+                pages.forEach(p => p.classList.remove('active'));
+                entry.target.classList.add('active');
+            }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
 
     pages.forEach(page => observer.observe(page));
+
+    // PROGRESS BAR
+    container.addEventListener('scroll', () => {
+        const scrolled = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    });
 });
