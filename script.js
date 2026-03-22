@@ -1,25 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Add active class to cover on load to trigger the Polaroid tilt animation
+    // SHIELD: Disable right-click and dragging
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.querySelectorAll('img').forEach(img => {
+        img.onmousedown = (e) => e.preventDefault();
+    });
+
+    // Reveal cover
     setTimeout(() => {
+        document.body.classList.add('active');
         document.querySelector('.magazine-cover').classList.add('active');
     }, 200);
 
-    // 2. Fade-in on Scroll Functionality
-    const pages = document.querySelectorAll('.page');
-    const observerOptions = { threshold: 0.15 };
-
+    // Intersection Observer for scroll reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    pages.forEach(page => observer.observe(page));
+    document.querySelectorAll('.page').forEach(page => observer.observe(page));
 
-    // 3. Progress Bar Functionality
+    // Progress Bar
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
