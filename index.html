@@ -14,8 +14,8 @@
     <div id="custom-cursor"><span class="cursor-text"></span></div>
 
     <nav class="magazine-nav">
-        <button id="prevBtn">←</button>
-        <button id="nextBtn">→</button>
+        <button id="prevBtn" aria-label="Previous">←</button>
+        <button id="nextBtn" aria-label="Next">→</button>
     </nav>
 
     <div class="scroll-container">
@@ -39,7 +39,7 @@
             <div class="letter-container">
                 <span>TO MY FAVORITE PERSON,</span>
                 <p>I wanted to create something as timeless as the moments we share. This is a collection of how I see you—full of beauty and quiet magic. Happy Birthday.</p>
-                <span class="signature">— With love, Ayanfe.</span>
+                <span class="signature">— With love</span>
             </div>
         </section>
 
@@ -47,17 +47,8 @@
             <div class="chapter-title"><span>Chapter One</span><h2>THE RADIANCE</h2></div>
         </section>
 
-        <section class="page">
-            <div class="image-wrapper" data-caption="Pure Radiance.">
-                <img src="batch1_focus1.jpg">
-            </div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="Unstoppable.">
-                <img src="batch1_hero.jpg">
-            </div>
-        </section>
+        <section class="page"><div class="image-wrapper" data-caption="Pure Radiance."><img src="batch1_focus1.jpg"></div></section>
+        <section class="page"><div class="image-wrapper" data-caption="Unstoppable."><img src="batch1_hero.jpg"></div></section>
         
         <section class="page duet">
             <div class="image-wrapper" data-caption="A moment caught."><img src="batch1_duet1.jpg"></div>
@@ -68,56 +59,22 @@
             <div class="chapter-title"><span>Chapter Two</span><h2>THE INFINITE</h2></div>
         </section>
 
-        <section class="page">
-            <div class="image-wrapper" data-caption="Beyond the frame.">
-                <img src="batch1_split1.jpg">
-            </div>
-        </section>
+        <section class="page"><div class="image-wrapper" data-caption="Beyond the frame."><img src="batch1_split1.jpg"></div></section>
         
         <section class="page duet">
             <div class="image-wrapper" data-caption="Left side."><img src="batch1_grid1.jpg"></div>
             <div class="image-wrapper" data-caption="Right side."><img src="batch1_grid2.jpg"></div>
-        </section>
-        
-        <section class="page">
-            <div class="image-wrapper" data-caption="The third perspective.">
-                <img src="batch1_grid3.jpg">
-            </div>
         </section>
 
         <section class="page chapter-header">
             <div class="chapter-title"><span>Chapter Three</span><h2>EDITORIAL</h2></div>
         </section>
 
-        <section class="page">
-            <div class="image-wrapper" data-caption="High Fashion.">
-                <img src="style_focus.jpg">
-            </div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="Vogue status.">
-                <img src="style_01.jpg">
-            </div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="Timeless.">
-                <img src="style_02.jpg">
-            </div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="The Main Character.">
-                <img src="style_03.jpg">
-            </div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="Effortless.">
-                <img src="batch2_portrait1.jpg">
-            </div>
-        </section>
+        <section class="page"><div class="image-wrapper" data-caption="High Fashion."><img src="style_focus.jpg"></div></section>
+        <section class="page"><div class="image-wrapper" data-caption="Vogue status."><img src="style_01.jpg"></div></section>
+        <section class="page"><div class="image-wrapper" data-caption="Timeless."><img src="style_02.jpg"></div></section>
+        <section class="page"><div class="image-wrapper" data-caption="The Main Character."><img src="style_03.jpg"></div></section>
+        <section class="page"><div class="image-wrapper" data-caption="Effortless."><img src="batch2_portrait1.jpg"></div></section>
 
         <section class="page chapter-header">
             <div class="chapter-title"><span>Chapter Four</span><h2>UNFILTERED</h2></div>
@@ -137,15 +94,14 @@
             <div class="chapter-title"><span>Chapter Five</span><h2>CELEBRATION</h2></div>
         </section>
 
-        <section class="page hero-fixed" style="background-image: url('hero_final.jpg');" data-caption="The Final Act.">
-            <div class="hero-text">UNFORGETTABLE</div>
-        </section>
-
-        <section class="page">
-            <div class="image-wrapper" data-caption="Cheers to you.">
-                <img src="hero_final_2.jpg">
+        <section class="page hero-fixed">
+            <div class="image-wrapper" data-caption="Unforgettable.">
+                <img src="hero_final.jpg" class="hero-img">
+                <div class="hero-overlay-text">UNFORGETTABLE</div>
             </div>
         </section>
+
+        <section class="page"><div class="image-wrapper" data-caption="Cheers to you."><img src="hero_final_2.jpg"></div></section>
 
         <section class="page duet">
             <div class="image-wrapper" data-caption="Endless love."><img src="final_duet_1.jpg"></div>
