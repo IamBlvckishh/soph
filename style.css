@@ -10,12 +10,13 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
+    cursor: none !important; /* Forces custom cursor */
 }
 
 html, body { 
     height: 100%; 
     width: 100%; 
-    overflow: hidden; /* Prevents double scrollbars */
+    overflow: hidden; 
     font-family: 'Georgia', serif; 
     background-color: var(--paper-white); 
     color: var(--text-main); 
@@ -49,13 +50,12 @@ html, body {
     transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Reveal animation when active */
 .page.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 3. IMAGE RULES */
+/* 3. IMAGE & PARALLAX RULES */
 img { 
     max-height: 80vh; 
     max-width: 90%; 
@@ -65,6 +65,7 @@ img {
     display: block; 
     margin: 0 auto;
     box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-out; /* Smooth parallax transition */
 }
 
 /* 4. UI ELEMENTS */
@@ -85,49 +86,65 @@ img {
     width: 50px; 
     height: 50px; 
     border-radius: 50%; 
-    cursor: pointer; 
     font-size: 1.2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
 }
 
-.magazine-nav button:hover { transform: scale(1.1); }
+/* 5. INTERACTIVE CURSOR */
+#custom-cursor {
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid var(--forest-green);
+    border-radius: 50%;
+    position: fixed;
+    top: -12.5px;
+    left: -12.5px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: difference;
+    background: white;
+}
 
-/* 5. LAYOUT SPECIALS */
+.cursor-ripple {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--forest-green);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: ripple-out 0.6s ease-out forwards;
+    z-index: 9998;
+    opacity: 0.5;
+}
+
+@keyframes ripple-out {
+    to { width: 80px; height: 80px; opacity: 0; }
+}
+
+/* 6. LAYOUT SPECIALS */
 .magazine-cover { display: flex; flex-direction: row; padding: 0; }
-.polaroid-wrapper { 
-    flex: 1.2; background: var(--forest-green); 
-    height: 100%; display: flex; align-items: center; justify-content: center; 
-}
-.polaroid-frame { 
-    background: white; padding: 15px 15px 45px; 
-    transform: rotate(-1deg); box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-}
-.polaroid-caption { font-family: 'Mrs Saint Delafield', cursive; font-size: 2.2rem; margin-top: 10px; text-align: center; }
+.polaroid-wrapper { flex: 1.2; background: var(--forest-green); height: 100%; display: flex; align-items: center; justify-content: center; }
+.polaroid-frame { background: white; padding: 15px 15px 45px; transform: rotate(-1deg); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.polaroid-caption { font-family: 'Mrs Saint Delafield', cursive; font-size: 2.2rem; margin-top: 10px; text-align: center; color: #1a1a1a; }
 
 .cover-text-content { flex: 1; padding: 60px; background: var(--sage-bg); text-align: left; }
 .cover-text-content h1 { font-size: 5rem; color: var(--forest-green); border-top: 2px solid; border-bottom: 2px solid; margin: 20px 0; padding: 10px 0; }
 
 .chapter-header { background-color: var(--sage-bg) !important; text-align: center; }
-.chapter-title span { text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: #888; }
-.chapter-title h2 { font-size: 4rem; color: var(--forest-green); letter-spacing: 8px; margin-top: 10px; }
+.chapter-title h2 { font-size: 4rem; color: var(--forest-green); letter-spacing: 8px; }
 
 .duet { flex-direction: row !important; gap: 30px; padding: 0 10%; }
 .duet .image-wrapper { flex: 1; }
-.duet img { max-height: 70vh; }
 
-.hero-fixed { 
-    width: 100%; height: 100%; background-size: cover; background-position: center; 
-    display: flex; align-items: center; justify-content: center; 
-}
+.hero-fixed { width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
 .hero-text { background: white; padding: 25px 50px; letter-spacing: 12px; font-weight: bold; font-size: 1.4rem; }
 
-/* 6. NOTE & SPECIAL SIGN-OFF */
 .birthday-note { background: var(--sage-bg); text-align: center; }
-.note-content { max-width: 650px; }
-.note-content h2 { margin-bottom: 25px; letter-spacing: 2px; }
 
-.final-signoff {
+/* 7. THE SPECIAL SIGN-OFF */
+.special-font {
     font-family: 'Mrs Saint Delafield', cursive;
     font-size: clamp(3.5rem, 8vw, 5.5rem);
     color: var(--forest-green);
@@ -137,24 +154,16 @@ img {
     transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
 }
 
-.active .final-signoff {
-    opacity: 1;
-    transform: scale(1);
-}
+.active .special-font { opacity: 1; transform: scale(1); }
 
-/* 7. BACK COVER */
-.back-cover { 
-    background-color: var(--forest-green) !important; 
-    color: white; 
-}
+/* 8. BACK COVER */
+.back-cover { background-color: var(--forest-green) !important; color: white; }
 .back-cover img { border: 8px solid white; box-shadow: none; }
-.back-cover h3 { font-size: 3rem; margin-top: 20px; letter-spacing: 5px; }
 
-/* 8. RESPONSIVE FIXES */
+/* 9. MOBILE FIX */
 @media (max-width: 768px) {
+    * { cursor: auto !important; }
+    #custom-cursor { display: none; }
     .magazine-cover, .duet { flex-direction: column !important; }
     .page { padding: 30px; }
-    .cover-text-content h1 { font-size: 3rem; }
-    .chapter-title h2 { font-size: 2.5rem; }
-    .duet img { max-height: 40vh; }
 }
