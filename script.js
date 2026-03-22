@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Add active class to cover on load
+    // 1. Add active class to cover on load to trigger the Polaroid tilt animation
     setTimeout(() => {
         document.querySelector('.magazine-cover').classList.add('active');
-    }, 100);
+    }, 200);
 
-    // Fade-in on Scroll
+    // 2. Fade-in on Scroll Functionality
     const pages = document.querySelectorAll('.page');
     const observerOptions = { threshold: 0.15 };
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pages.forEach(page => observer.observe(page));
 
-    // Progress Bar
+    // 3. Progress Bar Functionality
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
