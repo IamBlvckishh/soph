@@ -2,40 +2,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.scroll-container');
     const pages = document.querySelectorAll('.page');
     const cursor = document.getElementById('custom-cursor');
+    const cursorText = document.querySelector('.cursor-text');
     let currentIndex = 0;
 
-    // 1. CUSTOM CURSOR LOGIC
+    // 1. CURSOR MOVEMENT & HOVER LOGIC
     document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-    });
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
 
-    // 2. CLICK RIPPLE EFFECT
-    document.addEventListener('mousedown', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'cursor-ripple';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        document.body.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
-        cursor.style.transform += ' scale(0.7)';
-    });
+        // Check for hidden message targets
+        const target = e.target.closest('.image-wrapper[data-caption]');
+        if (target) {
+            cursor.classList.add('active');
+            cursorText.textContent = target.getAttribute('data-caption');
+        } else {
+            cursor.classList.remove('active');
+            cursorText.textContent = '';
+        }
 
-    document.addEventListener('mouseup', () => {
-        cursor.style.transform = cursor.style.transform.replace(' scale(0.7)', '');
-    });
-
-    // 3. PARALLAX EFFECT (Only on active page images)
-    container.addEventListener('mousemove', (e) => {
+        // Parallax logic for active images
         const activeImg = document.querySelector('.page.active img');
         if (activeImg) {
-            const x = (window.innerWidth / 2 - e.pageX) / 45; // Subtle shift
-            const y = (window.innerHeight / 2 - e.pageY) / 45;
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
             activeImg.style.transform = `translate(${x}px, ${y}px)`;
         }
     });
 
-    // 4. NAVIGATION & SCROLL LOGIC
+    // 2. SCROLL NAVIGATION
     function goToPage(index) {
         if (index < 0 || index >= pages.length) return;
         currentIndex = index;
@@ -47,29 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             goToPage(currentIndex + 1);
         }
-        if (e.code === 'ArrowUp') {
-            e.preventDefault();
-            goToPage(currentIndex - 1);
-        }
     });
 
-    document.getElementById('nextBtn').onclick = () => goToPage(currentIndex + 1);
-    document.getElementById('prevBtn').onclick = () => goToPage(currentIndex - 1);
-
-    // 5. OBSERVER & PROGRESS BAR
+    // 3. OBSERVER FOR REVEAL
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                currentIndex = Array.from(pages).indexOf(entry.target);
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.5 });
 
     pages.forEach(page => observer.observe(page));
-
-    container.addEventListener('scroll', () => {
-        const scrolled = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
-        document.getElementById("progress-bar").style.width = scrolled + "%";
-    });
 });
