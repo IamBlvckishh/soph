@@ -13,11 +13,12 @@
     <div id="progress-bar"></div>
 
     <nav class="magazine-nav">
-        <button id="prevBtn">←</button>
-        <button id="nextBtn">→</button>
+        <button id="prevBtn" title="Previous">←</button>
+        <button id="nextBtn" title="Next (or Space)">→</button>
     </nav>
 
     <div class="scroll-container">
+        
         <header class="magazine-cover page">
             <div class="polaroid-wrapper">
                 <div class="polaroid-frame">
@@ -84,9 +85,7 @@
         </section>
 
         <section class="page"><div class="image-wrapper portrait-focus"><img src="style_03.jpg"></div></section>
-        
         <section class="page"><div class="image-wrapper portrait-focus"><img src="style_focus.jpg"></div></section>
-
         <section class="page"><div class="image-wrapper full-spread"><img src="batch2_portrait1.jpg"></div></section>
 
         <section class="page chapter-header">
@@ -109,8 +108,10 @@
             <div class="chapter-title"><span>Chapter Five</span><h2>CELEBRATION</h2></div>
         </section>
 
-        <section class="page hero-fixed" style="background-image: url('hero_final.jpg');">
-            <div class="hero-text">UNFORGETTABLE</div>
+        <section class="page">
+            <div class="hero-fixed" style="background-image: url('hero_final.jpg');">
+                <div class="hero-text">UNFORGETTABLE</div>
+            </div>
         </section>
 
         <section class="page"><div class="image-wrapper full-spread"><img src="hero_final_2.jpg"></div></section>
@@ -136,13 +137,14 @@
             </div>
         </section>
 
-        <section class="page back-cover">
-            <div class="portrait-focus" style="max-width: 400px; margin: 0 auto 30px;">
-                <img src="back_cover_portrait.jpg" style="border: 8px solid white;">
+        <footer class="page back-cover">
+            <div class="image-wrapper" style="max-width: 350px; margin-bottom: 20px;">
+                <img src="back_cover_portrait.jpg" style="border: 6px solid white;">
             </div>
             <h3>SOPH</h3>
             <p>ISSUE NO. 01 — MARCH 2026</p>
-        </section>
+        </footer>
+
     </div>
 
     <script src="script.js"></script>
