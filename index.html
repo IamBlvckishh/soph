@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow"> 
     <title>SOPH | Special Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -11,136 +11,113 @@
 <body>
 
     <div id="progress-bar-container"><div id="progress-bar"></div></div>
-    
+
     <nav class="magazine-nav">
         <button id="prevBtn">←</button>
         <button id="nextBtn">→</button>
     </nav>
 
     <div class="scroll-container">
-        <section class="page">
+        <header class="magazine-cover page">
             <div class="polaroid-wrapper">
                 <div class="polaroid-frame">
-                    <img src="cover_photo.jpg">
+                    <img src="cover_photo.jpg" alt="Childhood Memory">
                     <p class="polaroid-caption">Where it all began...</p>
                 </div>
             </div>
             <div class="cover-text-content">
                 <p class="issue-tag">EST. 2026 — VOL. 01</p>
                 <h1>SOPH</h1>
-                <p class="subtitle">A photographic journey. Press Space to begin.</p>
+                <p class="subtitle">A photographic journey through your light.</p>
+                <div class="scroll-prompt">Scroll or Press Space</div>
             </div>
-        </section>
+        </header>
 
         <section class="page letter-section">
             <div class="letter-container">
                 <span>TO MY FAVORITE PERSON,</span>
                 <p>I wanted to create something as timeless as the moments we share. This is a collection of how I see you—full of beauty and quiet magic. Happy Birthday.</p>
-                <span class="signature">— With love, Ayanfe.</span>
+                <span class="signature">— With love</span>
             </div>
         </section>
 
-        <section class="page chapter-header">
-            <div class="chapter-title"><span>Chapter One</span><h2>THE RADIANCE</h2></div>
-        </section>
+        <main class="magazine-content">
+            <section class="page chapter-header">
+                <div class="chapter-title">
+                    <span>Chapter One</span>
+                    <h2>THE RADIANCE</h2>
+                </div>
+            </section>
 
-        <section class="page"><div class="full-spread"><img src="batch1_hero.jpg"></div></section>
+            <section class="page">
+                <div class="image-wrapper full-spread">
+                    <img src="batch1_hero.jpg" alt="Power">
+                    <div class="photo-label">01. POWER</div>
+                </div>
+            </section>
 
-        <section class="page duet">
-            <div class="image-wrapper"><img src="batch1_duet1.jpg"></div>
-            <div class="image-wrapper"><img src="batch1_duet2.jpg"></div>
-        </section>
+            <section class="page duet">
+                <div class="image-wrapper"><img src="batch1_duet1.jpg"></div>
+                <div class="image-wrapper">
+                    <img src="batch1_duet2.jpg">
+                    <div class="photo-label">02. CAPTURE</div>
+                </div>
+            </section>
 
-        <section class="page"><div class="portrait-focus"><img src="batch1_focus1.jpg"></div></section>
+            <section class="page chapter-header">
+                <div class="chapter-title"><span>Chapter Two</span><h2>THE INFINITE</h2></div>
+            </section>
 
-        <section class="page chapter-header">
-            <div class="chapter-title"><span>Chapter Two</span><h2>THE INFINITE</h2></div>
-        </section>
+            <section class="page">
+                <div class="minimal-grid">
+                    <div class="image-wrapper grid-photo-1"><img src="batch1_grid1.jpg"></div>
+                    <div class="image-wrapper"><img src="batch1_grid2.jpg"></div>
+                    <div class="image-wrapper"><img src="batch1_grid3.jpg"></div>
+                </div>
+            </section>
 
-        <section class="page">
-            <div class="minimal-grid">
-                <div class="image-wrapper grid-photo-1"><img src="batch1_grid1.jpg"></div>
-                <div class="image-wrapper"><img src="batch1_grid2.jpg"></div>
-                <div class="image-wrapper"><img src="batch1_grid3.jpg"></div>
-            </div>
-        </section>
+            <section class="page chapter-header">
+                <div class="chapter-title"><span>Chapter Three</span><h2>EDITORIAL</h2></div>
+            </section>
 
-        <section class="page"><div class="full-spread"><img src="batch1_split1.jpg"></div></section>
+            <section class="page">
+                <div class="asymmetric-spread">
+                    <div class="image-wrapper main-img"><img src="style_01.jpg"></div>
+                    <div class="image-wrapper side-img"><img src="style_02.jpg"></div>
+                </div>
+            </section>
 
-        <section class="page chapter-header">
-            <div class="chapter-title"><span>Chapter Three</span><h2>EDITORIAL</h2></div>
-        </section>
+            <section class="page">
+                <div class="portrait-focus">
+                    <img src="style_focus.jpg" alt="Vibrant">
+                    <p class="bottom-caption">The colors of your spirit.</p>
+                </div>
+            </section>
 
-        <section class="page">
-            <div class="asymmetric-spread">
-                <div class="image-wrapper main-img"><img src="style_01.jpg"></div>
-                <div class="image-wrapper side-img"><img src="style_02.jpg"></div>
-            </div>
-        </section>
+            <section class="page chapter-header">
+                <div class="chapter-title"><span>Chapter Four</span><h2>CELEBRATION</h2></div>
+            </section>
 
-        <section class="page duet">
-            <div class="image-wrapper"><img src="duet_b_1.jpg"></div>
-            <div class="image-wrapper"><img src="duet_b_2.jpg"></div>
-        </section>
+            <section class="page hero-fixed-page" style="background-image: url('hero_final.jpg');">
+                <div class="hero-text">UNFORGETTABLE</div>
+            </section>
 
-        <section class="page"><div class="portrait-focus"><img src="style_03.jpg"></div></section>
-        
-        <section class="page"><div class="portrait-focus"><img src="style_focus.jpg"></div></section>
+            <section class="page birthday-note">
+                <div class="note-content">
+                    <h2>To many more chapters...</h2>
+                    <p>Watching you grow, laugh, and conquer every space you walk into is my greatest privilege. You aren't just the subject of these photos; you are the light that makes them possible.</p>
+                    <p class="final-signoff">Happy Birthday, Bubbles.</p>
+                </div>
+            </section>
 
-        <section class="page"><div class="full-spread"><img src="batch2_portrait1.jpg"></div></section>
-
-        <section class="page chapter-header">
-            <div class="chapter-title"><span>Chapter Four</span><h2>UNFILTERED</h2></div>
-        </section>
-
-        <section class="page duet">
-            <div class="image-wrapper"><img src="raw_01.jpg"></div>
-            <div class="image-wrapper"><img src="raw_02.jpg"></div>
-        </section>
-
-        <section class="page duet">
-            <div class="image-wrapper"><img src="raw_03.jpg"></div>
-            <div class="image-wrapper"><img src="raw_04.jpg"></div>
-        </section>
-
-        <section class="page chapter-header">
-            <div class="chapter-title"><span>Chapter Five</span><h2>CELEBRATION</h2></div>
-        </section>
-
-        <section class="page hero-fixed-page" style="background-image: url('hero_final.jpg');">
-            <div class="hero-text">UNFORGETTABLE</div>
-        </section>
-
-        <section class="page"><div class="full-spread"><img src="hero_final_2.jpg"></div></section>
-
-        <section class="page">
-            <div class="minimal-grid">
-                <div class="image-wrapper grid-photo-1"><img src="final_grid_1.jpg"></div>
-                <div class="image-wrapper"><img src="final_grid_2.jpg"></div>
-                <div class="image-wrapper"><img src="final_grid_3.jpg"></div>
-            </div>
-        </section>
-
-        <section class="page duet">
-            <div class="image-wrapper"><img src="final_duet_1.jpg"></div>
-            <div class="image-wrapper"><img src="final_duet_2.jpg"></div>
-        </section>
-
-        <section class="page birthday-note">
-            <div class="note-content">
-                <h2>To many more chapters...</h2>
-                <p>Watching you grow and conquer every space you walk into is my greatest privilege. You are the light that makes these photos possible.</p>
-                <p class="final-signoff">Happy Birthday, Bubbles.</p>
-            </div>
-        </section>
-
-        <section class="page back-cover">
-            <div class="portrait-focus" style="max-width: 400px; margin-bottom: 30px;">
-                <img src="back_cover_portrait.jpg" style="border: 8px solid white;">
-            </div>
-            <h3>SOPH</h3>
-            <p>ISSUE NO. 01 — MARCH 2026</p>
-        </section>
+            <section class="page back-cover">
+                <div class="portrait-focus" style="max-width: 400px; margin-bottom: 30px;">
+                    <img src="back_cover_portrait.jpg" style="border: 8px solid white;">
+                </div>
+                <h3>SOPH</h3>
+                <p>ISSUE NO. 01 — MARCH 2026</p>
+            </section>
+        </main>
     </div>
 
     <script src="script.js"></script>
